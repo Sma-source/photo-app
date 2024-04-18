@@ -16,6 +16,8 @@ const AuthForm = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSigningUp, setIsSigningUp] = useState(false);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -70,7 +72,7 @@ const AuthForm = () => {
               />
             </div>
             <Button type="submit" className="w-full">
-              {isNewUser ? "Create an account " : "Log in to your account"}
+              {isNewUser ? "Create an account " : "Sign in to your account"}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
