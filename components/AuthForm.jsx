@@ -11,6 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
+import { supabase } from "@/utils/supabaseClient";
 
 const AuthForm = () => {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -24,6 +25,14 @@ const AuthForm = () => {
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+    if (!error) {
+      setIsSigningUp(true);
+    }
+    console.log({ data, error });
   };
 
   let signInMessage = "Sign in to your account";
