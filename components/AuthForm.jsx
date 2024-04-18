@@ -27,12 +27,26 @@ const AuthForm = () => {
   return (
     <form onSubmit={isNewUser ? handleSignUp : handleLogin}>
       <Card className="mx-auto max-w-sm">
-        <CardHeader>
-          <CardTitle className="text-xl">Sign Up</CardTitle>
-          <CardDescription>
-            Enter your information to create an account
-          </CardDescription>
-        </CardHeader>
+        {isNewUser ? (
+          <>
+            <CardHeader>
+              <CardTitle className="text-xl">Sign Up</CardTitle>
+              <CardDescription>
+                Enter your information to create an account
+              </CardDescription>
+            </CardHeader>
+          </>
+        ) : (
+          <>
+            <CardHeader>
+              <CardTitle className="text-xl">Sign In</CardTitle>
+              <CardDescription>
+                Enter your information to sign in
+              </CardDescription>
+            </CardHeader>
+          </>
+        )}
+
         <CardContent>
           <div className="grid gap-4">
             <div className="grid gap-2">
@@ -56,14 +70,35 @@ const AuthForm = () => {
               />
             </div>
             <Button type="submit" className="w-full">
-              Create an account
+              {isNewUser ? "Create an account " : "Log in to your account"}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Already have an account?{" "}
-            <Link href="#" className="underline">
-              Sign in
-            </Link>
+            {isNewUser ? (
+              <>
+                Already have an account?{" "}
+                <Button
+                  type="button"
+                  variant="link"
+                  onClick={() => setIsNewUser(false)}
+                  className="underline"
+                >
+                  Sign in
+                </Button>
+              </>
+            ) : (
+              <>
+                Don't have an account?{" "}
+                <Button
+                  type="button"
+                  variant="link"
+                  className="underline"
+                  onClick={() => setIsNewUser(true)}
+                >
+                  Sign up
+                </Button>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>
