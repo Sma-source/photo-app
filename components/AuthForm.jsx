@@ -42,6 +42,12 @@ const AuthForm = () => {
   } else if (isNewUser) {
     signInMessage = "Create an account";
   }
+
+  const signUpMessage = (
+    <p className="text-center">
+      Email sent! Check your email to confirm sign up.
+    </p>
+  );
   return (
     <form onSubmit={isNewUser ? handleSignUp : handleLogin}>
       <Card className="mx-auto max-w-sm">
@@ -118,6 +124,7 @@ const AuthForm = () => {
               </>
             )}
           </div>
+          {isSigningUp && signUpMessage}
         </CardContent>
       </Card>
     </form>
