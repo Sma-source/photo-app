@@ -16,6 +16,14 @@ const AuthForm = () => {
   const [isNewUser, setIsNewUser] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+  };
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+  };
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
