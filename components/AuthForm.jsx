@@ -14,6 +14,7 @@ import { useState } from "react";
 
 const AuthForm = () => {
   const [isNewUser, setIsNewUser] = useState(false);
+  const [email, setEmail] = useState("");
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
