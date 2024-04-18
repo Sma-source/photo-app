@@ -26,6 +26,13 @@ const AuthForm = () => {
     e.preventDefault();
   };
 
+  let signInMessage = "Sign in to your account";
+
+  if (isSigningIn) {
+    signInMessage = "Signing In";
+  } else if (isNewUser) {
+    signInMessage = "Create an account";
+  }
   return (
     <form onSubmit={isNewUser ? handleSignUp : handleLogin}>
       <Card className="mx-auto max-w-sm">
@@ -72,7 +79,7 @@ const AuthForm = () => {
               />
             </div>
             <Button type="submit" className="w-full">
-              {isNewUser ? "Create an account " : "Sign in to your account"}
+              {signInMessage}
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
