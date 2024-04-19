@@ -12,6 +12,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { supabase } from "@/utils/supabaseClient";
+import { useRouter } from "next/navigation";
 
 const AuthForm = () => {
   const [isNewUser, setIsNewUser] = useState(false);
@@ -19,9 +20,20 @@ const AuthForm = () => {
   const [password, setPassword] = useState("");
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [isSigningUp, setIsSigningUp] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setIsSigningUp(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+    });
+    if (!error) {
+      router.push("/photos");
+    } else {
+      setIsSigningIn(false);
+    }
   };
   const handleSignUp = async (e) => {
     e.preventDefault();
