@@ -1,3 +1,4 @@
+import SignOutButton from "@/components/SignOutButton";
 import React from "react";
 
 const Photos = () => {
@@ -11,7 +12,9 @@ const Photos = () => {
         </div>
         {/* <PhotoGrid /> */}
       </div>
-      <div className="absolute top-4 right-4">{/* <SignOutButton /> */}</div>
+      <div className="absolute top-4 right-4">
+        <SignOutButton />
+      </div>
     </main>
   );
 };
