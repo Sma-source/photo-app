@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import Photo from "./Photo";
 
 const fetchUserPhotos = async (user, supabaseServer) => {
   if (!user) return;
@@ -51,7 +52,7 @@ const PhotoGrid = async () => {
   const photoObjects = await getPhotoUrls(photos, user, supabaseServer);
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      {displayedPhotos.map((photo) => (
+      {photoObjects.map((photo) => (
         <Photo
           key={photo.photoName}
           src={photo.url}
