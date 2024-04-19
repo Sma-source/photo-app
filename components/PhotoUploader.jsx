@@ -14,6 +14,7 @@ const PhotoUploader = () => {
         id="picture"
         type="file"
         className="text-primary cursor-pointer file:border file:border-solid file:border-black file:rounded-md"
+        disabled={uploading}
       />
     </div>
   );
