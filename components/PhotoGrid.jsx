@@ -1,6 +1,19 @@
-import React from "react";
+import { createServerClient } from "@supabase/ssr";
+import { cookies } from "next/headers";
 
 const PhotoGrid = () => {
+  const cookieStore = cookies();
+  const supabaseServer = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        get(name) {
+          return cookieStore.get(name)?.value;
+        },
+      },
+    }
+  );
   return <div>PhotoGrid</div>;
 };
 
