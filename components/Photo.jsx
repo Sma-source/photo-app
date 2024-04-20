@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
+import { useState } from "react";
 
 const Photo = ({ src, alt, width, height, photoName }) => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <>
       <div
