@@ -11,6 +11,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { deletePhoto } from "@/lib/actions/deletePhoto";
 
 const Photo = ({ src, alt, width, height, photoName }) => {
   const [showModal, setShowModal] = useState(false);
@@ -23,7 +24,7 @@ const Photo = ({ src, alt, width, height, photoName }) => {
         style={{ width, height }}
         className="relative w-auto h-auto shadow-md border border-white border-opacity-80 rounded-lg overflow-hidden cursor-pointer"
       >
-        <form action="" className="absolute bottom-1 right-1 z-10">
+        <form action={deletePhoto} className="absolute bottom-1 right-1 z-10">
           <input type="hidden" name="photoPath" value={src} />
           <button
             type="submit"
