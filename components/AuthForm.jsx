@@ -24,7 +24,7 @@ const AuthForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setIsSigningUp(true);
+    setIsSigningIn(true);
     const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
