@@ -1,6 +1,6 @@
 "use client";
 
-const PhotoModal = () => {
+const PhotoModal = ({ src, alt, onClose }) => {
   return <div>PhotoModal</div>;
 };
 
