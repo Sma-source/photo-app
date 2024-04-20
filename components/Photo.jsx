@@ -19,6 +19,7 @@ const Photo = ({ src, alt, width, height, photoName }) => {
           width={width}
           height={height}
           style={{ objectFit: "cover", objectPosition: "center" }}
+          onClick={() => setShowModal(true)}
         />
       </div>
     </>
