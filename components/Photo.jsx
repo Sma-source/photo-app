@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import PhotoModal from "./PhotoModal";
 
 const Photo = ({ src, alt, width, height, photoName }) => {
   const [showModal, setShowModal] = useState(false);
@@ -22,6 +23,7 @@ const Photo = ({ src, alt, width, height, photoName }) => {
           onClick={() => setShowModal(true)}
         />
       </div>
+      {showModal && <PhotoModal src={src} alt={alt} onClose={toggleModal} />}
     </>
   );
 };
