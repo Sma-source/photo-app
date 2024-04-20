@@ -4,6 +4,9 @@ import { useState } from "react";
 
 const Photo = ({ src, alt, width, height, photoName }) => {
   const [showModal, setShowModal] = useState(false);
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <>
       <div
