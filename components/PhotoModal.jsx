@@ -1,5 +1,6 @@
 "use client";
 
+import { CrossIcon, X } from "lucide-react";
 import Image from "next/image";
 
 const PhotoModal = ({ src, alt, onClose }) => {
@@ -8,9 +9,9 @@ const PhotoModal = ({ src, alt, onClose }) => {
       <div className="bg-gray-800 p-4 rounded-lg relative border border-gray-600">
         <button
           onClick={onClose}
-          className="text-gray-300 hover:text-white mb-2"
+          className="text-gray-300 hover:text-white mb-2 flex"
         >
-          Close
+          <X /> Close
         </button>
         <div className="relative w-[80vw] h-[80vh]">
           <Image
