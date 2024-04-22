@@ -30,6 +30,19 @@ const getPhotoUrls = async (photos, user, supabaseServer) => {
     })
   );
 };
+
+const fetchFavoritePhotos = async (user, supabaseServer) => {
+  const { data, error } = await supabaseServer
+    .from("favorites")
+    .select("photo_name")
+    .eq("user_id", user.id);
+
+  if (error) {
+    console.error(`Error fetching favorites`, error);
+    return [];
+  }
+  return data.map((favorite) => favorite.photo_name);
+};
 const PhotoGrid = async () => {
   const cookieStore = cookies();
 
