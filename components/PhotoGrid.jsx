@@ -43,7 +43,7 @@ const fetchFavoritePhotos = async (user, supabaseServer) => {
   }
   return data.map((favorite) => favorite.photo_name);
 };
-const PhotoGrid = async () => {
+const PhotoGrid = async ({ favorites = false }) => {
   const cookieStore = cookies();
 
   const supabaseServer = createServerClient(
@@ -63,9 +63,18 @@ const PhotoGrid = async () => {
   } = await supabaseServer.auth.getUser();
   const photos = await fetchUserPhotos(user, supabaseServer);
   const photoObjects = await getPhotoUrls(photos, user, supabaseServer);
+  const favoritePhotoNames = await fetchFavoritePhotos(user, supabaseServer);
+  const photosWithFavorites = photoObjects.map((photo) => ({
+    ...photo,
+    isFavorited: favoritePhotoNames.includes(photo.photoName),
+  }));
+  const displayedPhotos = favorites
+    ? photosWithFavorites.filter((photo) => photo.isFavorited)
+    : photosWithFavorites;
+
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      {photoObjects.map((photo) => (
+      {displayedPhotos.map((photo) => (
         <Photo
           key={photo.photoName}
           src={photo.url}
@@ -73,6 +82,7 @@ const PhotoGrid = async () => {
           width={200}
           height={200}
           photoName={photo.photoName}
+          isFavorited={photo.isFavorited}
         />
       ))}
     </div>
