@@ -5,7 +5,7 @@ import React from "react";
 
 const Favorites = () => {
   return (
-    <main className="min-h-screen bg-gray-800 text-white relative p-10">
+    <main className="min-h-screen bg-black text-white relative p-10">
       <Nav />
       <div className="container mx-auto px-4 py-4">
         <div className="flex flex-col items-center mb-6">
