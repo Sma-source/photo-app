@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import PhotoModal from "./PhotoModal";
-import { SquareX, Trash2 } from "lucide-react";
+import { Star, Trash2 } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -12,8 +12,9 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { deletePhoto } from "@/lib/actions/deletePhoto";
+import { addOrRemoveFromFavorites } from "@/lib/actions/addRemoveFavorites";
 
-const Photo = ({ src, alt, width, height, photoName }) => {
+const Photo = ({ src, alt, width, height, photoName, isFavorited = false }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -31,6 +32,23 @@ const Photo = ({ src, alt, width, height, photoName }) => {
             className="bg-transparent border-none text-red-500 cursor-pointer hover:text-red-500 hover:scale-110 transition duration-300"
           >
             <Trash2 className="w-6 h-6" />
+          </button>
+        </form>
+        <form
+          action={addOrRemoveFromFavorites}
+          className="absolute bottom-1 right-9 z-10"
+        >
+          <input type="hidden" name="photoName" value={photoName} />
+          <input type="hidden" name="isFavorited" value={isFavorited} />
+          <button
+            type="submit"
+            className="bg-transparent border-none text-red-500 cursor-pointer hover:text-red-500 hover:scale-110 transition duration-300"
+          >
+            {isFavorited ? (
+              <Star className="w-6 h-6 fill-red-500" />
+            ) : (
+              <Star className="w-6 h-6 fill-none" />
+            )}
           </button>
         </form>
         <Image
